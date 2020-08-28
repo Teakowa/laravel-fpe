@@ -1,0 +1,25 @@
+os: linux
+dist: bionic
+language: php
+
+php:
+  - 7.3
+  - 7.4
+
+branches:
+  only:
+    - master
+    - /^v?\d+\.\d+\.\d+$/
+
+install:
+  - composer install --no-interaction --prefer-dist --no-suggest
+
+script:
+  - make test
+  - make analyse
+  - make insights
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+    - vendor
